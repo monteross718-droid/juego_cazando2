@@ -16,7 +16,7 @@ function graficarGato(){
 }
 
 function graficarComida(){
-    graficarRectangulo(comidaX,comidaY,ANCHO_COMIDA,ALTO_COMIDA,"gray");
+    graficarRectangulo(canvas.width-30,canvas.height-30,ANCHO_COMIDA,ALTO_COMIDA,"gray");
 
 }
 
