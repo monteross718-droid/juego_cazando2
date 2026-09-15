@@ -43,6 +43,30 @@ function moverIzquierda(){
 
 }
 
+function moverDerecha(){
+    if(gatoX +ANCHO_GATO < canvas.width){
+        gatoX = gatoX + 10;
+        actualizarPantalla();
+    }
+
+}
+
+function moverAbajo(){
+    if(gatoY +ALTO_GATO < canvas.height){
+        gatoY = gatoY + 10;
+        actualizarPantalla();
+    }
+
+}
+
+function moverArriba(){
+    if(gatoY >0){
+        gatoY = gatoY - 10;
+        actualizarPantalla();
+    }
+
+}
+
 function actualizarPantalla(){
     limpiarCanva();
     graficarGato();
