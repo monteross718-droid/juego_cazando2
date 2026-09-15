@@ -18,6 +18,8 @@ function iniciarJuego(){
     comidaY=canvas.height-ALTO_COMIDA;
     graficarGato();
     graficarComida();
+    
+
 } 
 
 function graficarGato(){
@@ -47,6 +49,7 @@ function moverDerecha(){
     if(gatoX +ANCHO_GATO < canvas.width){
         gatoX = gatoX + 10;
         actualizarPantalla();
+        detectarColision();
     }
 
 }
@@ -71,10 +74,22 @@ function actualizarPantalla(){
     limpiarCanva();
     graficarGato();
     graficarComida();
-    
+    detectarColision();
 }
 
 function limpiarCanva(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
+}
+
+
+function detectarColision(){                                          //////////////
+    if(gatoX + ANCHO_GATO > comidaX &&
+       gatoX < comidaX + ANCHO_COMIDA &&
+       gatoY + ALTO_GATO > comidaY &&
+       gatoY < comidaY + ALTO_COMIDA){
+       
+    
+        alert("EL GATO TOCÓ LA COMIDA");
+    }
 }
