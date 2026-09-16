@@ -81,6 +81,7 @@ function actualizarPantalla(){
     graficarGato();
     graficarComida();
     detectarColision();
+    
    
 }
 
@@ -105,19 +106,45 @@ function detectarColision(){                                          //////////
      
      puntaje++;
      monstrarEnSpan();
-     
-        
+       
     }
+
+    if(puntaje==6){
+        clearInterval(intervalo);
+        alert("GANASTE");
+
+    
+    }
+
 }
 
 function restarTiempo(){
     tiempo=tiempo-1;
     let elementoTiempo=document.getElementById("tiempo");
     elementoTiempo.textContent=tiempo;
+    if(tiempo==0){
+        clearInterval(intervalo);
+        alert("GAME OVER");
+    }
 
 }
 function reposicionarComida(){
     comidaX = Math.random() * (canvas.width-ANCHO_COMIDA);
     comidaY = Math.random() * (canvas.height-ALTO_COMIDA);
+
+}
+
+function reiniciarJuego(){
+    clearInterval(intervalo);
+    tiempo=10;
+    puntaje=0;
+    
+    monstrarEnSpan();
+
+    let elementoTiempo=document.getElementById("tiempo");
+    elementoTiempo.textContent=tiempo;
+
+    iniciarJuego();
+    actualizarPantalla();
 
 }
