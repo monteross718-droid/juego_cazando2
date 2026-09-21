@@ -1,8 +1,8 @@
 let canvas=document.getElementById("areaJuego");
 let ctx=canvas.getContext("2d");
 
-const ALTO_GATO=60;
-const ANCHO_GATO=30;
+const ALTO_GATO=100;
+const ANCHO_GATO=60;
 const ALTO_COMIDA=30;
 const ANCHO_COMIDA=30;
 
@@ -29,11 +29,11 @@ function iniciarJuego(){
 } 
 
 function graficarGato(){
-    graficarRectangulo(gatoX,gatoY,ANCHO_GATO,ALTO_GATO,"orange")
+    graficarRectangulo(gatoX,gatoY,ANCHO_GATO,ALTO_GATO,"blue")
 }
 
 function graficarComida(){
-    graficarRectangulo(comidaX,comidaY,ANCHO_COMIDA,ALTO_COMIDA,"gray");
+    graficarRectangulo(comidaX,comidaY,ANCHO_COMIDA,ALTO_COMIDA,"Green");
 
 }
 
@@ -124,7 +124,7 @@ function restarTiempo(){
     elementoTiempo.textContent=tiempo;
     if(tiempo==0){
         clearInterval(intervalo);
-        alert("GAME OVER");
+        alert("JUEGO TERMINADO");
     }
 
 }
@@ -146,5 +146,11 @@ function reiniciarJuego(){
 
     iniciarJuego();
     actualizarPantalla();
+
+}
+
+function desaparecerPersonaje(){
+    ctx.clearRect(gatoX,gatoY,ANCHO_GATO,ALTO_GATO);
+
 
 }
