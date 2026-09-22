@@ -149,7 +149,11 @@ canvas {
   width: 100%;
   height: auto;
   border-radius: 14px;
-  background: #f8fcff;
+  background-color: #183f38;
+  background-image: url("fondo-cazando.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .controles { margin-top: 22px; }
