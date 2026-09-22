@@ -1,39 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Juego Cazando</title>
-  <link rel="stylesheet" href="cazando.css"/>
-
+  <link rel="stylesheet" href="cazando.css">
 </head>
 <body onload="iniciarJuego()">
+  <main class="juego">
+    <header class="encabezado">
+      <span class="etiqueta">MINIJUEGO</span>
+      <h1>Juego Cazando</h1>
+      <p class="autor">Creado por Erik Santiago Monteros</p>
+    </header>
 
-  <h1>Juego Cazando</h1>
-  <p>Autor: ERIK SANTIAGO MONTEROS</p>
-  <canvas width="500px" height="500px" id="areaJuego"></canvas>
-  
+    <section class="panel" aria-label="Marcador del juego">
+      <div class="dato">
+        <span class="dato-icono">★</span>
+        <div><span class="dato-titulo">Puntos</span><strong id="puntos">0</strong></div>
+      </div>
+      <div class="separador"></div>
+      <div class="dato">
+        <span class="dato-icono">⏱</span>
+        <div><span class="dato-titulo">Tiempo</span><strong><span id="tiempo">15</span> s</strong></div>
+      </div>
+    </section>
 
+    <div class="tablero">
+      <canvas width="500" height="500" id="areaJuego">Tu navegador no puede mostrar este juego.</canvas>
+    </div>
 
-  <div class="controles">
-    
-    <button onclick="moverArriba()">⬆</button>
-    <br>
-    <button onclick="moverIzquierda()">⬅</button>
-    <button onclick="moverAbajo()">⬇</button>
-    <button onclick="moverDerecha()">➡</button>
-    <br>
-    <button onclick="reiniciarJuego()">REINICIAR</button>
-    <button onclick="desaparecerPersonaje()">DESAPARECER</button>
-  </div>
+    <section class="controles" aria-label="Controles del juego">
+      <p class="instruccion">Mueve al personaje</p>
+      <div class="direcciones">
+        <button class="boton-direccion arriba" onclick="moverArriba()" aria-label="Mover arriba">▲</button>
+        <button class="boton-direccion izquierda" onclick="moverIzquierda()" aria-label="Mover a la izquierda">◀</button>
+        <button class="boton-direccion abajo" onclick="moverAbajo()" aria-label="Mover abajo">▼</button>
+        <button class="boton-direccion derecha" onclick="moverDerecha()" aria-label="Mover a la derecha">▶</button>
+      </div>
+      <div class="acciones">
+        <button class="boton-accion reiniciar" onclick="reiniciarJuego()"><span>↻</span> Reiniciar</button>
+        <button class="boton-accion desaparecer" onclick="desaparecerPersonaje()"><span>✦</span> Desaparecer</button>
+      </div>
+    </section>
 
-
-  <div class="panel">
-    <span>Puntos: <span id="puntos">0</span></span>
-    <span>Tiempo: <span id="tiempo">15</span></span>
-  </div>
-
-  <p id="mensaje"></p>
-  
+    <p id="mensaje" role="status" aria-live="polite"></p>
+  </main>
   <script src="cazando.js"></script>
-
 </body>
 </html>

@@ -1,42 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap");
+
+:root {
+  --fondo-oscuro: #071426;
+  --fondo-medio: #102945;
+  --tarjeta: rgba(13, 35, 59, 0.92);
+  --borde: rgba(255, 255, 255, 0.12);
+  --texto: #f6fbff;
+  --texto-suave: #9eb2c8;
+  --verde: #62e6a7;
+  --verde-oscuro: #24ae76;
+  --morado: #8d7cff;
+  --rojo: #ff6b7a;
+  --sombra: 0 24px 70px rgba(0, 0, 0, 0.38);
+}
+
+* { box-sizing: border-box; }
+
 body {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  background: #f0f0f0;
+  min-height: 100vh;
   margin: 0;
-  padding: 20px;
+  padding: 40px 18px;
+  display: grid;
+  place-items: center;
+  color: var(--texto);
+  font-family: "Nunito", Arial, sans-serif;
+  text-align: center;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(85, 184, 255, 0.18), transparent 30%),
+    radial-gradient(circle at 85% 80%, rgba(98, 230, 167, 0.14), transparent 32%),
+    linear-gradient(145deg, var(--fondo-oscuro), var(--fondo-medio));
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.juego {
+  position: relative;
+  width: min(100%, 680px);
+  padding: 32px;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  border-radius: 28px;
+  background: var(--tarjeta);
+  box-shadow: var(--sombra);
+  backdrop-filter: blur(12px);
+}
+
+.juego::after {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -90px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(98, 230, 167, 0.08);
+  pointer-events: none;
+}
+
+.encabezado { position: relative; z-index: 1; margin-bottom: 22px; }
+
+.etiqueta {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 5px 12px;
+  border: 1px solid rgba(98, 230, 167, 0.35);
+  border-radius: 999px;
+  color: var(--verde);
+  background: rgba(98, 230, 167, 0.08);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
 }
 
 h1 {
-  margin-bottom: 5px;
+  margin: 0;
+  font-size: clamp(32px, 6vw, 48px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
 }
 
+.autor { margin: 8px 0 0; color: var(--texto-suave); font-size: 14px; }
+
 .panel {
-  margin: 15px 0;
-  font-size: 18px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 34px;
+  margin-bottom: 18px;
+  padding: 13px 22px;
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.dato {
+  min-width: 105px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-align: left;
+}
+
+.dato-icono {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  color: var(--verde);
+  background: rgba(98, 230, 167, 0.12);
+  font-size: 19px;
+}
+
+.dato-titulo {
+  display: block;
+  color: var(--texto-suave);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dato strong { font-size: 23px; line-height: 1; }
+.separador { width: 1px; height: 35px; background: var(--borde); }
+
+.tablero {
+  padding: 7px;
+  border: 1px solid rgba(85, 184, 255, 0.25);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(85, 184, 255, 0.4), rgba(98, 230, 167, 0.28));
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.28);
 }
 
 canvas {
-  background: white;
-  border: 2px solid black;
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  background: #f8fcff;
 }
 
-.controles {
-  margin-top: 20px;
+.controles { margin-top: 22px; }
+
+.instruccion {
+  margin: 0 0 12px;
+  color: var(--texto-suave);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.direcciones {
+  width: 166px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(2, 50px);
+  gap: 8px;
 }
 
 button {
-  margin: 5px;
-  padding: 10px 16px;
-  font-size: 18px;
+  border: 0;
+  color: var(--texto);
+  font-family: inherit;
+  font-weight: 900;
   cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
+}
+
+button:hover { transform: translateY(-2px); filter: brightness(1.1); }
+button:active { transform: translateY(1px) scale(0.97); }
+button:focus-visible { outline: 3px solid rgba(98, 230, 167, 0.42); outline-offset: 3px; }
+
+.boton-direccion {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background: linear-gradient(145deg, #264866, #19354f);
+  box-shadow: 0 6px 0 #0a1c2d, 0 10px 18px rgba(0, 0, 0, 0.25);
+  font-size: 18px;
+}
+
+.boton-direccion:active { box-shadow: 0 2px 0 #0a1c2d; }
+.arriba { grid-column: 2; grid-row: 1; }
+.izquierda { grid-column: 1; grid-row: 2; }
+.abajo { grid-column: 2; grid-row: 2; }
+.derecha { grid-column: 3; grid-row: 2; }
+
+.acciones { display: flex; justify-content: center; gap: 12px; }
+
+.boton-accion {
+  min-width: 150px;
+  padding: 12px 18px;
+  border-radius: 13px;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.boton-accion span { margin-right: 5px; font-size: 17px; }
+.reiniciar {
+  color: #062719;
+  background: linear-gradient(135deg, var(--verde), var(--verde-oscuro));
+  box-shadow: 0 8px 22px rgba(36, 174, 118, 0.22);
+}
+
+.desaparecer {
+  background: linear-gradient(135deg, var(--morado), #6554d9);
+  box-shadow: 0 8px 22px rgba(141, 124, 255, 0.2);
 }
 
 #mensaje {
-  font-size: 20px;
-  font-weight: bold;
-  color: darkred;
-  margin-top: 15px;
+  min-height: 28px;
+  margin: 18px 0 0;
+  color: var(--rojo);
+  font-size: 19px;
+  font-weight: 900;
+}
+
+@media (max-width: 600px) {
+  body { padding: 16px 10px; }
+  .juego { padding: 22px 14px; border-radius: 22px; }
+  .panel { gap: 15px; padding-inline: 12px; }
+  .dato { min-width: 0; }
+  .acciones { flex-direction: column; align-items: stretch; }
+  .boton-accion { width: 100%; }
 }
